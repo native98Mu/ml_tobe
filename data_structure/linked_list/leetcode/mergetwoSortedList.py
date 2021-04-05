@@ -100,20 +100,51 @@ def list2link(list_):
         p = p.next
     return head
 
-if __name__ == '__main__':
-    link_list = SingleLinkList()
-    #向链表尾部添加数据
-    for i in range(5):
-        link_list.append(i)
-    #向头部添加元素
-    link_list.add(6)
-    #遍历链表数据
-    for i in link_list.items():
-        print(i,end='\t')
-    #向链表中插入数据
-    link_list.insert(3,9)
-    print('\n',list(link_list.items()))
-    #删除链表数据
-    link_list.remove(0)
-    #查找链表数据
-    print(link_list.find(4))
+class MergeTwoSortedLinkList(object):
+    def mergetwolist(self,l1,l2):
+        self.head = None
+        self.cur_node = None
+        while l1 != None and l2 != None:
+            if l1.item >= l2.item:
+                if self.head == None:
+                    self.head = l2
+                    self.cur_node = self.head
+                else:
+                    self.cur_node.next = l2
+                    self.cur_node = self.cur_node.next
+                l2 = l2.next
+            else:
+                if self.head == None:
+                    self.head = l1
+                    self.cur_node = self.head
+                else:
+                    self.cur_node.next = l1
+                    self.cur_node = self.cur_node.next
+                l1 = l1.next
+        if l1 != None:
+            if self.head == None:
+                self.head = l1
+            else:
+                self.cur_node.next = l1
+        if l2 != None:
+            if self.head == None:
+                self.head = l2
+            else:
+                self.cur_node.next = l2
+        return self.head
+
+link_list1=[1,2,3,4]
+link_list2=[2,3,4,6]
+m1 = MergeTwoSortedLinkList()
+l = m1.mergetwolist(list2link(link_list1),list2link(link_list2))
+def items(head):
+        """遍历链表"""
+        #获取head指针
+        cur = head
+        #循环遍历
+        while cur is not None:
+            #返回生成器
+            yield cur.item
+            #指针下移
+            cur = cur.next
+print(list(items(l)))
