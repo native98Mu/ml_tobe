@@ -18,47 +18,54 @@ def printLink(head):
     print('\n')
 class Solution:
     def swapPairs(self, head: ListNode) -> ListNode:
-        cur = head
-        pre = None
-        evpre = None        
-        temp = None
-        tempval = None
-        count = 0
-        #空链表
-        if not head:
-            return
-        #只有一个元素
-        if cur.next == None:
-            return head  
-        #>=2 elements
-        pre = cur
-        cur = cur.next
-        while cur != None:
-            print(pre.val)
-            print(cur.val)          
-            #有2个元素
-            if cur.next == None and count == 0:
-                tempval = cur.val
-                cur.val = pre.val
-                pre.val = tempval
-                printLink(head)
-                return head
-            #多于两个
-            count += 1
-            if count % 2 != 0:
-                tempval = cur.val
-                cur.val = pre.val
-                pre.val = tempval
-                printLink(head)               
-                pre = cur
-                cur = cur.next
-            elif count % 2 == 0 and cur.next == None:
-                printLink(head)
-                return head
-            else:
-                pre = cur 
-                cur = cur.next
-                printLink(head)
+        ptr = head 
+        while ptr and ptr.next:
+            ptr.val,ptr.next.val = ptr.next.val,ptr.val
+            ptr = ptr.next.next
+        printLink(head)
+# class Solution:
+#     def swapPairs(self, head: ListNode) -> ListNode:
+#         cur = head
+#         pre = None
+#         evpre = None        
+#         temp = None
+#         tempval = None
+#         count = 0
+#         #空链表
+#         if not head:
+#             return
+#         #只有一个元素
+#         if cur.next == None:
+#             return head  
+#         #>=2 elements
+#         pre = cur
+#         cur = cur.next
+#         while cur != None:
+#             print(pre.val)
+#             print(cur.val)          
+#             #有2个元素
+#             if cur.next == None and count == 0:
+#                 tempval = cur.val
+#                 cur.val = pre.val
+#                 pre.val = tempval
+#                 printLink(head)
+#                 return head
+#             #多于两个
+#             count += 1
+#             if count % 2 != 0:
+#                 tempval = cur.val
+#                 cur.val = pre.val
+#                 pre.val = tempval
+#                 printLink(head)               
+#                 pre = cur
+#                 cur = cur.next
+#             elif count % 2 == 0 and cur.next == None:
+#                 printLink(head)
+#                 return head
+#             else:
+#                 pre = cur 
+#                 cur = cur.next
+#                 printLink(head)
                     
         return head
 
