@@ -12,4 +12,4 @@ def binarySearch(nums,target):
     return left
 
 ls = [1,3,5,6]
-print(binarySearch(ls,0))
+print('Position: ',binarySearch(ls,9))
