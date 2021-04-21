@@ -1,3 +1,7 @@
+'''
+寻找左右边界 注意都是闭区间 while条件为小于等于 right left +- 1
+'''
+
 def left_bound(nums,target):
     left = 0
     right = len(nums) - 1
